@@ -1,6 +1,9 @@
 # Created by james at 12/9/2024
-Feature: # Enter feature name here
+Feature: Verify there are 14 benefit cells on page
   # Enter feature description here
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: Check www.target.com/circle page for 14 benefit cells
+    Given Open target circle page
+    When benefit cells are located
+    Then verify number of cells
+
