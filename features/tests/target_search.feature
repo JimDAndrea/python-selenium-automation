@@ -1,3 +1,4 @@
+# Created by lana at 11/23/24
 Feature: Tests for search
 
   Scenario: User can search for a product
@@ -5,19 +6,24 @@ Feature: Tests for search
     When Search for tea
     Then Verify search results shown
 
-#HW3-Question2
-  Scenario: Click Cart icon on open target page to verify it is empty
+  Scenario: User can search for coffee
     Given Open target main page
-    When Click cart from main page
-    Then Verify Your cart is empty
-
-#    HW3-Question3
-#    2) open target and click on cart icon -
-#    verify your cart is empty
+#    When Search for coffe
 #    Then Verify search results shown for coffee
+    When Search for coffee
+    Then Verify search results shown for coffee
 
-  Scenario: Logged out user navigate to sign in
+  Scenario: User can search for a mug
     Given Open target main page
-    When Click signin from main page
-    When Click signin from sidebar
-    Then Verify signin form opened
+    When Search for a mug
+    Then Verify search results shown for a mug
+
+  Scenario Outline: User can search for a product
+    Given Open target main page
+    When Search for <product>
+    Then Verify search results shown for <product>
+    Examples:
+    |product    |
+    |coffee     |
+    |tea        |
+    |mug        |
