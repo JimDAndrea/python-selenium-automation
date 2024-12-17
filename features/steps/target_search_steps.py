@@ -3,25 +3,18 @@ from behave import given, when, then
 from time import sleep
 
 
-@given('Open target main page')
-def open_main(context):
-    context.driver.get('https://www.target.com/')
-
 @when('Click cart from main page')
 def click_cart(context):
     context.driver.find_element(By.XPATH,"//use[@href='/icons/Cart.svg#Cart']").click()
     sleep(5)
 
-@when('Search for tea')
-def search_product(context):
-    context.driver.find_element(By.ID, 'search').send_keys('tea')
-    context.driver.find_element(By.XPATH, "//button[@data-test='@web/Search/SearchButton']").click()
-    sleep(5)
 
 @then('Verify Your cart is empty')
 def verify_empty_cart(context):
-    #verify signin page exists
-    context.driver.find_element(By.XPATH, "//h1[@class='sc-fe064f5c-0 fJliSz']").click()
+    #verify cart is empty
+    expected_result = 'Your Amazon Cart is empty'
+    actual_result = context.driver.find_element(By.XPATH, "//h3[contains(text(), 'Your Amazon Cart is empty')]")
+    assert expected_result in actual_result, f'Expected text {expected_result} not in actual {actual_result}'
     sleep(5)
 
 
