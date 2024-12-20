@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 
@@ -14,15 +15,17 @@ service = Service(driver_path)
 driver = webdriver.Chrome(service=service)
 
 wait = WebDriverWait(driver, 10)
+
 # Open Amazon.com
 driver.get('https://www.amazon.com')
 # amazon icon from create account screen
 # HW3-Q1-CSS Selector
-wait.until(EC.presence_of_element_located((
-        By.ESS_SELECTOR, "div.a-icon.a-icon-logo"))
-)
-driver.find_element(By.CSS_SELECTOR,
-                    "i.a-icon.a-icon-logo[role='img'][aria-label='Amazon']")
+wait.until(EC.presence_of_element_located(
+    (By.CSS_SELECTOR, "i.a-icon.a-icon-logo[role='img'][aria-label='Amazon']")
+))
+
+# Locate and interact with the element
+element = driver.find_element(By.CSS_SELECTOR, "i.a-icon.a-icon-logo[role='img'][aria-label='Amazon']")
 # HW3-Q2
 wait.until(
     EC.presence_of_element_located((

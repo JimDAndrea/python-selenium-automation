@@ -1,6 +1,12 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+#not sure if these next 2 lines are needed
 from time import sleep
+from selenium import webdriver
+
 
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 ADD_TO_CART_SIDE_NAV_BTN = (By.XPATH, "//button[@data-test='orderPickupButton']")
@@ -10,11 +16,9 @@ ADD_TO_CART_SIDE_NAV_BTN = (By.XPATH, "//button[@data-test='orderPickupButton']"
 @given('Open target circle page')
 def open_circle_page(context):
     context.driver.get('https://www.target.com/circle/')
-
-
-@when('Click on Add to Cart button')
-def click_add_to_cart(context):
-    sleep(3)
+    # Wait until the Add to Cart button is clickable
+    wait.until(EC.element_to_be_clickable(ADD_TO_CART_BTN))
+    # click element when available
     context.driver.find_element(*ADD_TO_CART_BTN).click()
 
 
@@ -41,10 +45,13 @@ def verify_item_in_cart(context):
 
 @when('Confirm Add to Cart button from side navigation')
 def side_nav_click_add_to_cart(context):
-    sleep(3)
+    #properly initializing the wait object for the driver
+    # wait = WebDriverWait(context.driver, 10)
+    context.driver.wait.until(EC.element_to_be_clickable(ADD_TO_CART_SIDE_NAV_BTN))
     context.driver.find_element(*ADD_TO_CART_SIDE_NAV_BTN).click()
-    sleep(4)
 
-
+@when("Click on Add to Cart button")
+def click_add_to_cart(context):
+    context.driver.find_element(*ADD_TO_CART_BTN).click()
 
 

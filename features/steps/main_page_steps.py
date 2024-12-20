@@ -1,6 +1,10 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+
 
 SEARCH_FIELD = (By.ID, 'search')
 SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
@@ -13,10 +17,12 @@ def open_main(context):
 
 
 @when('Search for {product}')
+# def search_product(context, product):
 def search_product(context, product):
     context.driver.find_element(*SEARCH_FIELD).send_keys(product)
     context.driver.find_element(*SEARCH_BTN).click()
     sleep(10)
+#UNABLE TO REMOVE SLEEP
 
 
 @when('Click on Cart icon')
