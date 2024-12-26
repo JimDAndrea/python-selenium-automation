@@ -11,6 +11,10 @@ from selenium import webdriver
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 ADD_TO_CART_SIDE_NAV_BTN = (By.XPATH, "//button[@data-test='orderPickupButton']")
 # ADD_TO_CART_SIDE_NAV_BTN = (By.XPATH, "//button[@data-test='shippingButton']")
+PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
+LISTINGS = (By.CSS_SELECTOR, "[data-test*='@web/site-top-of-funnel/ProductCardWrapper']")
+PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='productTitle']")
+PRODUCT_IMG = (By.CSS_SELECTOR, "[data-test='productImage']")
 
 
 @given('Open target circle page')
@@ -55,3 +59,18 @@ def click_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BTN).click()
 
 
+@then ("Verify that every product has a name and an image")
+def verify_products_name_img(context):
+    context.driver.execute_script("window.scrollBy(0,2000)","")
+    sleep(4)
+    context.driver.execute_script("window.scrollBy(0,2000)","")
+    #Find all products:
+    all_products = context.driver.find_elements(*LISTINGS)
+    # print(all_products)
+    assert len(all_products) > 0, 'No products found!'
+
+    for product in all_products:
+        title = product.find_element(*PRODUCT_TITLE).text
+        assert title != '', 'Product title not shown'
+        print(title)
+        product.find_element(*PRODUCT_IMG)

@@ -22,7 +22,6 @@ def search_product(context, product):
     context.driver.find_element(*SEARCH_FIELD).send_keys(product)
     context.driver.find_element(*SEARCH_BTN).click()
     sleep(10)
-#UNABLE TO REMOVE SLEEP
 
 
 @when('Click on Cart icon')
