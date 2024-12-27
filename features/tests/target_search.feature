@@ -1,15 +1,13 @@
 # Created by lana at 11/23/24
 Feature: Tests for search
 
-  Scenario: User can search for a product
+  Scenario: User can search for tea
     Given Open target main page
     When Search for tea
-    Then Verify search results shown
+    Then Verify search results shown for tea
 
   Scenario: User can search for coffee
     Given Open target main page
-#    When Search for coffe
-#    Then Verify search results shown for coffee
     When Search for coffee
     Then Verify search results shown for coffee
 
@@ -28,7 +26,8 @@ Feature: Tests for search
     |tea        |
     |mug        |
 
-    Scenario: Verify that user can see product names and images
-      Given Open target main page
-      When Search for AirPods (3rd Generation)
-      Then Verify that every product has a name and an image
+    # HW5 Q3
+  Scenario: Verify that user can see product names and images
+    Given Open target main page
+    When Search for AirPods (3rd Generation)
+    Then Verify that every product has a name and an image
