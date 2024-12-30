@@ -15,20 +15,25 @@ def open_target(context, product_id):
 
 @then('Verify user can click through colors')
 def click_and_verify_colors(context):
-
-# if {product_id} == '91511634':
-#         expected_colors = ['Blue Tint', 'Denim Blue', 'Raven', 'Marine']
-#        context.driver.find_element(By.CSS_SELECTOR, div[aria-label=grey-selected])
-# else:
-    expected_colors = ['grey', 'navy/tan', 'white/sand/tan']
-
+    #modified for 91511634
+    expected_colors = ['dark khaki', 'grey', 'navy/tan', 'white/sand/tan']
     actual_colors = []
     colors = context.driver.find_elements(*COLOR_OPTIONS)  # [webelement1, webelement2, webelement3]
     for color in colors:
         color.click()
-        selected_color = context.driver.find_element(*SELECTED_COLOR).text  # 'Color\nBlack'
-        print('Current color', selected_color)
+        sleep(2)
+        #removed .text as this was not callable and getting errors
+        selected_color = context.driver.find_elements(*SELECTED_COLOR)[2].text
+#removed .split from selected_color.split('\n')[1]
         selected_color = selected_color.split('\n')[1]  # remove 'Color\n' part, keep Black'
-        actual_colors.append(selected_color)
-        print(actual_colors)
-        assert expected_colors == actual_colors, f'Expected {expected_colors} did not match actual {actual_colors}'
+        #added 3 lines to check for out of stock
+        if "Out of Stock" in selected_color:
+            print(f"Skipping out-of-stock color: {selected_color}")
+            continue
+        else:
+            print(f"Selected color: {selected_color}")
+            print('Current color', selected_color)
+            actual_colors.append(selected_color)
+            print(actual_colors)
+
+    assert expected_colors == actual_colors, f'Expected {expected_colors} did not match actual {actual_colors}'
