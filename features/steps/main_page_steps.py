@@ -11,7 +11,7 @@ def open_main(context):
 
 @when('Search for {product}')
 def search_product(context, product):
-    context.app.header.search_product()
+    context.app.header.search_product(product)
 
 
 @when('Click on Cart icon')

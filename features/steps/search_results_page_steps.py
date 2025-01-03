@@ -14,7 +14,7 @@ PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
 
 @then('Verify search results shown for {product}')
 def verify_search_results(context, product):
-    context.app.search_results_page.verify_search_results()
+    context.app.search_results_page.verify_search_results(product)
 
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
