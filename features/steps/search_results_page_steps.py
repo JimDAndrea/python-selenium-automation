@@ -7,7 +7,6 @@ from time import sleep
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
 ADD_TO_CART_SIDE_NAV_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*='addToCart']")
 PRODUCT_NAME = (By.CSS_SELECTOR, "[data-test='content-wrapper'] h4")
-
 LISTINGS = (By.CSS_SELECTOR, "[data-test*='@web/site-top-of-funnel/ProductCardWrapper']")
 PRODUCT_TITLE = (By.CSS_SELECTOR, "[data-test='product-title']")
 PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
@@ -15,9 +14,7 @@ PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
 
 @then('Verify search results shown for {product}')
 def verify_search_results(context, product):
-    actual_result = context.driver.find_element(By.XPATH, "//div[@data-test='resultsHeading']").text
-    assert product in actual_result, f'Expected text {product} not in actual {actual_result}'
-
+    context.app.search_results_page.verify_search_results()
 
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
