@@ -23,7 +23,7 @@ def verify_product_name(context):
 
 @then("Verify 'Your cart is empty' message is shown")
 def VerifyCartEmpty(context):
-    context.app.CartPage.VerifyCartEmpty()
+    context.app.cart_page.VerifyCartEmpty()
 
 
 
