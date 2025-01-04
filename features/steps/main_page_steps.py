@@ -16,8 +16,7 @@ def search_product(context, product):
 
 @when('Click on Cart icon')
 def click_cart(context):
-    context.driver.find_element(By.CSS_SELECTOR, "[data-test='@web/CartLink']").click()
-    context.driver.find_element(*CART_ICON).click()
+    context.app.cart_page.ClickCart()
 
 
 @then('Verify at least 1 header link is shown')
