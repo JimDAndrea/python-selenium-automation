@@ -16,6 +16,10 @@ PRODUCT_IMG = (By.CSS_SELECTOR, 'img')
 def verify_search_results(context, product):
     context.app.search_results_page.verify_search_results(product)
 
+@then('Verify search term {product} in URL')
+def verify_search_url(context, product):
+    context.app.search_results_page.verify_search_url(product)
+
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
