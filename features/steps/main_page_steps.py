@@ -16,7 +16,7 @@ def search_product(context, product):
 
 @when('Click on Cart icon')
 def click_cart(context):
-    context.app.cart_page.ClickCart()
+    context.app.header.ClickCart()
 
 
 @then('Verify at least 1 header link is shown')
