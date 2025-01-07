@@ -5,6 +5,7 @@ Feature: Tests for search
     Given Open target main page
     When Search for tea
     Then Verify search results shown for tea
+    Then Verify search term tea in URL
 
   Scenario: User can search for coffee
     Given Open target main page
