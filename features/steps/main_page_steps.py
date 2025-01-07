@@ -18,6 +18,17 @@ def search_product(context, product):
 def click_cart(context):
     context.app.header.ClickCart()
 
+@then('Click Sign In')
+def click_signin(context):
+    context.app.header.ClickSignIn()
+
+@then('From right side Navigation menu Click Sign In')
+def click_signin_from_nav(context):
+    context.app.header.ClickSignInFromNav()
+
+@then('Verify Sign In form opened')
+def verify_signin_form(context):
+    context.app.header.VerifySignInForm()
 
 @then('Verify at least 1 header link is shown')
 def verify_header_links(context):
