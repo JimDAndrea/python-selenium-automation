@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from behave import given, when, then
 
 CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
+ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
+ADD_TO_CART_SIDE_NAV_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*='addToCart']")
 
 
 @given('Open target main page')
@@ -9,9 +11,20 @@ def open_main(context):
     context.app.main_page.open_main()
 
 
+@when('Confirm Add to Cart button from side navigation')
+def side_nav_click_add_to_cart(context):
+    context.driver.wait.until(EC.element_to_be_clickable(ADD_TO_CART_SIDE_NAV_BTN)).click()
+    sleep(4)
+
+
 @when('Search for {product}')
 def search_product(context, product):
     context.app.header.search_product(product)
+
+
+@when('Click on Add to Cart button')
+def click_add_to_cart(context):
+    context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
 
 
 @when('Click on Cart icon')
