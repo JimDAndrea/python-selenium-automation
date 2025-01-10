@@ -37,11 +37,11 @@ def click_signin_from_nav(context):
 
 @when('Input email on SignIn page')
 def input_email(context):
-    context.app.login_page.InputEmail('abomb552@hulas.me')
+    context.app.login_page.InputEmail('******')
 
 @when('Input password on SignIn page')
 def input_password(context):
-    context.app.login_page.InputPassword('abomb552')
+    context.app.login_page.InputPassword('*******')
 
 @then('Verify user is logged in')
 def verify_user_logged_in(context):
