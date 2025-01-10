@@ -12,6 +12,7 @@ class Header(BasePage):
     RT_SIDE_NAV_SIGNIN = (By.CSS_SELECTOR, "[data-test='accountNav-signIn']")
     SIGN_IN_PAGE_SIGNIN_BTN = (By.CSS_SELECTOR, "[@id='login']")
 
+
     def search_product(self, product):
         self.input_text(product, *self.SEARCH_FIELD)
         self.click(*self.SEARCH_BTN)
@@ -29,5 +30,7 @@ class Header(BasePage):
 
     def VerifySignInForm(self):
         self.verify_text('Sign in', *self.SIGN_IN_PAGE_SIGNIN_BTN)
+
+
 
 
