@@ -10,32 +10,44 @@ ADD_TO_CART_SIDE_NAV_BTN = (By.CSS_SELECTOR, "[data-test='content-wrapper'] [id*
 def open_main(context):
     context.app.main_page.open_main()
 
-
 @when('Confirm Add to Cart button from side navigation')
 def side_nav_click_add_to_cart(context):
     context.driver.wait.until(EC.element_to_be_clickable(ADD_TO_CART_SIDE_NAV_BTN)).click()
     sleep(4)
 
-
 @when('Search for {product}')
 def search_product(context, product):
     context.app.header.search_product(product)
-
 
 @when('Click on Add to Cart button')
 def click_add_to_cart(context):
     context.driver.find_element(*ADD_TO_CART_BTN).click()  # always clicks on 1st Add to cart btn
 
-
 @when('Click on Cart icon')
 def click_cart(context):
     context.app.header.ClickCart()
 
-@then('Click Sign In')
+@when('Click Sign In')
 def click_signin(context):
     context.app.header.ClickSignIn()
 
 @then('From right side Navigation menu Click Sign In')
+def click_signin_from_nav(context):
+    context.app.header.ClickSignInFromNav()
+
+@when('Input email on SignIn page')
+def input_email(context):
+    context.app.login_page.InputEmail('abomb552@hulas.me')
+
+@when('Input password on SignIn page')
+def input_password(context):
+    context.app.login_page.InputPassword('abomb552')
+
+@then('Verify user is logged in')
+def verify_user_logged_in(context):
+    context.app.login_page.VerifyUserLoggedIn()
+
+@when('From right side Navigation menu Click Sign In')
 def click_signin_from_nav(context):
     context.app.header.ClickSignInFromNav()
 
