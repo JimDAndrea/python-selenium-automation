@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.support import expected_conditions as EC
+from time import sleep
 
 CART_ICON = (By.CSS_SELECTOR, "[data-test='@web/CartLink']")
 ADD_TO_CART_BTN = (By.CSS_SELECTOR, "[id*='addToCartButton']")
